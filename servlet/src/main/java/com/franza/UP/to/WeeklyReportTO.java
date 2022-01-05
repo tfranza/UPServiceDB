@@ -1,0 +1,372 @@
+package com.franza.UP.to;
+
+import javax.servlet.http.HttpServletRequest;
+
+import com.franza.UP.model.WeeklyReport;
+import com.franza.UP.model.Entity;
+import com.franza.UP.to.TO;
+import com.franza.UP.util.InvalidInputException;
+
+/**
+ * <p> Instantiable class that implements the correspondent TO interface and contains: </p>
+ * 	 <ul><li> the fields correspondent to the weeklyReport entity bean, </li> 
+ * 	 	 <li> the builder functions needed to fill the fields of the transfer object, </li>
+ *       <li> the utility functions needed to adjust the queries, </li>
+ *       <li> the checker functions needed to check potential errors in the data. </li></ul>
+ */
+public class WeeklyReportTO implements TO {
+
+	/**
+	 * <p> Private field to store the id of the weeklyReport. </p>  
+	 */
+	private Integer id = -1;
+
+	/**
+	 * <p> Private field to store the stamp of the weeklyReport. </p>  
+	 */
+	private String stamp = "";
+
+	/**
+	 * <p> Private field to store the averageDays of the weeklyReport. </p>  
+	 */
+	private Double averageDays = -1.0;
+
+	/**
+	 * <p> Private field to store the nShipments of the weeklyReport. </p>  
+	 */
+	private Integer nShipments = -1;
+
+	/**
+	 * <p> Private field to store the earnings of the weeklyReport. </p>  
+	 */
+	private Integer earnings = -1;
+
+	/**
+	 * <p> Private field to store the vehicleMaintenance of the weeklyReport. </p>  
+	 */
+	private Integer vehicleMaintenance = -1;
+
+	/**
+	 * <p> Private field to store the total of the weeklyReport. </p>  
+	 */
+	private Integer total = -1;
+
+	// builders
+
+	/**
+	 * <p> Public method that initializes the weeklyReport transfer object fields with the values taken from the http request. </p>
+	 * @param req : http request that stores the values to be copied into the weeklyReport transfer object.
+	 * @return the updated weeklyReport transfer object.
+	 */
+	public TO getFromRequest (HttpServletRequest req) {
+		if (req.getParameter("idWeeklyReport") != null)
+			if (! req.getParameter("idWeeklyReport").equals(""))
+				setId (Integer.parseInt(req.getParameter("idWeeklyReport")));
+		if (req.getParameter("stampWeeklyReport") != null)
+			if (! req.getParameter("stampWeeklyReport").equals(""))
+				setStamp (req.getParameter("stampWeeklyReport"));
+		if (req.getParameter("averageDaysWeeklyReport") != null)
+			if (! req.getParameter("averageDaysWeeklyReport").equals(""))
+				setAverageDays (Double.parseDouble(req.getParameter("averageDaysWeeklyReport")));
+		if (req.getParameter("nShipmentsWeeklyReport") != null)
+			if (! req.getParameter("nShipmentsWeeklyReport").equals(""))
+				setNShipments (Integer.parseInt(req.getParameter("nShipmentsWeeklyReport")));
+		if (req.getParameter("earningsWeeklyReport") != null)
+			if (! req.getParameter("earningsWeeklyReport").equals(""))
+				setEarnings (Integer.parseInt(req.getParameter("earningsWeeklyReport")));
+		if (req.getParameter("vehicleMaintenanceWeeklyReport") != null)
+			if (! req.getParameter("vehicleMaintenanceWeeklyReport").equals(""))
+				setVehicleMaintenance (Integer.parseInt(req.getParameter("vehicleMaintenanceWeeklyReport")));
+		if (req.getParameter("totalWeeklyReport") != null)
+			if (! req.getParameter("totalWeeklyReport").equals(""))
+				setTotal (Integer.parseInt(req.getParameter("totalWeeklyReport")));
+		return this;
+	}
+
+	/**
+	 * <p> Public method that initializes the weeklyReport fields with the values given in input. </p>
+	 * @param id : integer that stores the id to be copied into the weeklyReport entity bean.
+	 * @param stamp : string that stores the stamp to be copied into the weeklyReport entity bean.
+	 * @param averageDays : integer that stores the averageDays to be copied into the weeklyReport entity bean.
+	 * @param nShipments : integer that stores the nShipments to be copied into the weeklyReport entity bean.
+	 * @param earnings : integer that stores the earnings to be copied into the weeklyReport entity bean.
+	 * @param vehicleMaintenance : integer that stores the vehicleMaintenance to be copied into the weeklyReport entity bean.
+	 * @param total : integer that stores the total to be copied into the weeklyReport entity bean.
+	 * @return the updated weeklyReport entity bean.
+	 */
+	public WeeklyReportTO getFromData(Integer id, String stamp, Double averageDays, Integer nShipments, Integer earnings, Integer vehicleMaintenance, Integer total) {
+		return setId(id)
+				.setStamp(stamp)
+				.setAverageDays(averageDays)
+				.setNShipments(nShipments)
+				.setEarnings(earnings)
+				.setVehicleMaintenance(vehicleMaintenance)
+				.setTotal(total);
+	}
+
+	/**
+	 * <p> Public method that initializes the weeklyReport transfer object fields with the values taken from the correspondent weeklyReport entity bean. </p>
+	 * @param entity : entity bean that stores the values to be copied into the weeklyReport transfer object.
+	 * @return the updated weeklyReport transfer object.
+	 * @throws InvalidInputException Exception thrown when the fields of the transfer object are not valid. It is generated by the checker functions of this same class.
+	 */
+	public TO getFromEntity(Entity entity) throws InvalidInputException {
+		return getFromData(((WeeklyReport) entity).getId(), 
+						   ((WeeklyReport) entity).getStamp(), 
+						   ((WeeklyReport) entity).getAverageDays(), 
+						   ((WeeklyReport) entity).getNShipments(), 
+						   ((WeeklyReport) entity).getEarnings(), 
+						   ((WeeklyReport) entity).getVehicleMaintenance(), 
+						   ((WeeklyReport) entity).getTotal() );
+	}
+
+	// getters & setters
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the id of the weeklyReport. </p>
+	 * @return the id of the weeklyReport.
+	 */
+	public Integer getId() { 
+		return id; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the id of the weeklyReport. </p>
+	 * @param id : id of the weeklyReport.
+	 * @return the weeklyReport with the updated id.
+	 */
+	public WeeklyReportTO setId(Integer id) { 
+		this.id = id; 
+		return this;
+	}
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the stamp of the weeklyReport. </p>
+	 * @return the stamp of the weeklyReport.
+	 */
+	public String getStamp() { 
+		return stamp; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the stamp of the weeklyReport. </p>
+	 * @param stamp : stamp of the weeklyReport.
+	 * @return the weeklyReport with the updated stamp.
+	 */
+	public WeeklyReportTO setStamp(String stamp) { 
+		this.stamp = stamp; 
+		return this;
+	}
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the averageDays of the weeklyReport. </p>
+	 * @return the averageDays of the weeklyReport.
+	 */
+	public Double getAverageDays() { 
+		return averageDays; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the averageDays of the weeklyReport. </p>
+	 * @param averageDays : averageDays of the weeklyReport.
+	 * @return the weeklyReport with the updated averageDays.
+	 */
+	public WeeklyReportTO setAverageDays(Double averageDays) { 
+		this.averageDays = averageDays; 
+		return this;
+	}
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the nShipments of the weeklyReport. </p>
+	 * @return the nShipments of the weeklyReport.
+	 */
+	public Integer getNShipments() { 
+		return nShipments; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the nShipments of the weeklyReport. </p>
+	 * @param nShipments : nShipments of the weeklyReport.
+	 * @return the weeklyReport with the updated nShipments.
+	 */
+	public WeeklyReportTO setNShipments(Integer nShipments) { 
+		this.nShipments = nShipments; 
+		return this;
+	}
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the earnings of the weeklyReport. </p>
+	 * @return the earnings of the weeklyReport.
+	 */
+	public Integer getEarnings() { 
+		return earnings; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the earnings of the weeklyReport. </p>
+	 * @param earnings : earnings of the weeklyReport.
+	 * @return the weeklyReport with the updated earnings.
+	 */
+	public WeeklyReportTO setEarnings(Integer earnings) { 
+		this.earnings = earnings; 
+		return this;
+	}
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the vehicleMaintenance of the weeklyReport. </p>
+	 * @return the vehicleMaintenance of the weeklyReport.
+	 */
+	public Integer getVehicleMaintenance() { 
+		return vehicleMaintenance; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the vehicleMaintenance of the weeklyReport. </p>
+	 * @param vehicleMaintenance : vehicleMaintenance of the weeklyReport.
+	 * @return the weeklyReport with the updated vehicleMaintenance.
+	 */
+	public WeeklyReportTO setVehicleMaintenance(Integer vehicleMaintenance) { 
+		this.vehicleMaintenance = vehicleMaintenance; 
+		return this;
+	}
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the total of the weeklyReport. </p>
+	 * @return the total of the weeklyReport.
+	 */
+	public Integer getTotal() { 
+		return total; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the total of the weeklyReport. </p>
+	 * @param total : total of the weeklyReport.
+	 * @return the weeklyReport with the updated total.
+	 */
+	public WeeklyReportTO setTotal(Integer total) { 
+		this.total = total; 
+		return this;
+	}
+
+	// checkers 
+
+	/**
+	 * <p> Public method that checks the id of the weeklyReport for eventual errors. </p>
+	 * @return the checked weeklyReport transfer object.
+	 * @throws InvalidInputException Exception thrown when the id of the weeklyReport is not valid.
+	 */
+	public WeeklyReportTO checkId() throws InvalidInputException {
+		if (id.equals(-1)) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the stamp of the weeklyReport for eventual errors. </p>
+	 * @return the checked weeklyReport transfer object.
+	 * @throws InvalidInputException Exception thrown when the stamp of the weeklyReport is not valid.
+	 */
+	public WeeklyReportTO checkStamp() throws InvalidInputException {
+		if (stamp.isEmpty()) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the averageDays of the weeklyReport for eventual errors. </p>
+	 * @return the checked weeklyReport transfer object.
+	 * @throws InvalidInputException Exception thrown when the averageDays of the weeklyReport is not valid.
+	 */
+	public WeeklyReportTO checkAverageDays() throws InvalidInputException {
+		if (averageDays.equals(-1)) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the nShipments of the weeklyReport for eventual errors. </p>
+	 * @return the checked weeklyReport transfer object.
+	 * @throws InvalidInputException Exception thrown when the nShipments of the weeklyReport is not valid.
+	 */
+	public WeeklyReportTO checkNShipments() throws InvalidInputException {
+		if (nShipments.equals(-1)) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the earnings of the weeklyReport for eventual errors. </p>
+	 * @return the checked weeklyReport transfer object.
+	 * @throws InvalidInputException Exception thrown when the earnings of the weeklyReport is not valid.
+	 */
+	public WeeklyReportTO checkEarnings() throws InvalidInputException {
+		if (earnings.equals(-1)) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the vehicleMaintenance of the weeklyReport for eventual errors. </p>
+	 * @return the checked weeklyReport transfer object.
+	 * @throws InvalidInputException Exception thrown when the vehicleMaintenance of the weeklyReport is not valid.
+	 */
+	public WeeklyReportTO checkVehicleMaintenance() throws InvalidInputException {
+		if (vehicleMaintenance.equals(-1)) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the total of the weeklyReport for eventual errors. </p>
+	 * @return the checked weeklyReport transfer object.
+	 * @throws InvalidInputException Exception thrown when the total of the weeklyReport is not valid.
+	 */
+	public WeeklyReportTO checkTotal() throws InvalidInputException {
+		if (total.equals(-1)) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the values of the weeklyReport primary keys for eventual errors. </p>
+	 * @return the checked weeklyReport transfer object.
+	 * @throws InvalidInputException Exception thrown when the transfer object primary keys are not valid.
+	 */
+	public TO checkPrimaryKeys() throws InvalidInputException {
+		return this.checkId();
+	}
+
+	/**
+	 * <p> Public method that checks the values of the weeklyReport foreign keys for eventual errors. </p>
+	 * @return the checked weeklyReport transfer object.
+	 * @throws InvalidInputException Exception thrown when the transfer object foreign keys are not valid.
+	 */
+	public TO checkForeignKeys() throws InvalidInputException {
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the values of the weeklyReport primary and foreign keys for eventual errors. </p>
+	 * @return the checked weeklyReport transfer object.
+	 * @throws InvalidInputException Exception thrown when the transfer object primary and foreign keys are not valid.
+	 */
+	public TO checkKeys() throws InvalidInputException {
+		return this.checkPrimaryKeys().checkForeignKeys();
+	}
+
+	// utilities
+
+	/**
+	 * <p> Public method that adapts the weeklyReport transfer object to the search query. </p>
+	 * @param flag : necessary to choose if the search method has to consider strings or substrings.
+	 * @return the updated weeklyReport transfer object.
+	 */
+	public TO searchAdjust () {
+		return this.setStamp(stamp.isEmpty()? stamp: "%".concat(stamp).concat("%"));
+	}
+
+	@Override
+	public String toString() {
+		return "WeeklyReportTO [id=" + id + 
+						  ", stamp=" + stamp + 
+						  ", averageDays=" + averageDays + 
+						  ", nShipments=" + nShipments + 
+						  ", earnings=" + earnings + 
+						  ", vehicleMaintenance=" + vehicleMaintenance + 
+						  ", total=" + total + "]";
+	}
+
+}

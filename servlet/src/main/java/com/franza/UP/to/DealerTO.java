@@ -1,0 +1,459 @@
+package com.franza.UP.to;
+
+import javax.servlet.http.HttpServletRequest;
+
+import com.franza.UP.model.Dealer;
+import com.franza.UP.model.Entity;
+import com.franza.UP.to.TO;
+import com.franza.UP.util.InvalidInputException;
+
+/**
+ * <p> Instantiable class that implements the correspondent TO interface and contains: </p>
+ * 	 <ul><li> the fields correspondent to the dealer entity bean, </li> 
+ * 	 	 <li> the builder functions needed to fill the fields of the transfer object, </li>
+ *       <li> the utility functions needed to adjust the queries, </li>
+ *       <li> the checker functions needed to check potential errors in the data. </li></ul>
+ */
+public class DealerTO implements TO {
+
+	/**
+	 * <p> Private field to store the id of the dealer. </p>  
+	 */
+	private String id = "";
+
+	/**
+	 * <p> Private field to store the kind of the dealer. </p>  
+	 */
+	private String kind = "";
+
+	/**
+	 * <p> Private field to store the name of the dealer. </p>  
+	 */
+	private String name = "";
+
+	/**
+	 * <p> Private field to store the phone of the dealer. </p>  
+	 */
+	private String phone = "";
+
+	/**
+	 * <p> Private field to store the mail of the dealer. </p>  
+	 */
+	private String mail = "";
+
+	/**
+	 * <p> Private field to store the zip of the dealer. </p>  
+	 */
+	private Integer zip = -1;
+
+	/**
+	 * <p> Private field to store the country of the dealer. </p>  
+	 */
+	private String country = "";
+
+	/**
+	 * <p> Private field to store the city of the dealer. </p>  
+	 */
+	private String city = "";
+
+	/**
+	 * <p> Private field to store the street of the dealer. </p>  
+	 */
+	private String street = "";
+
+	// builders
+
+	/**
+	 * <p> Public method that initializes the dealer transfer object fields with the values taken from the http request. </p>
+	 * @param req : http request that stores the values to be copied into the dealer transfer object.
+	 * @return the updated dealer transfer object.
+	 */
+	public TO getFromRequest (HttpServletRequest req) {
+		if (req.getParameter("idDealer") != null)
+			if (! req.getParameter("idDealer").equals(""))
+				setId (req.getParameter("idDealer"));
+		if (req.getParameter("kindDealer") != null)
+			if (! req.getParameter("kindDealer").equals(""))
+				setKind (req.getParameter("kindDealer"));
+		if (req.getParameter("nameDealer") != null)
+			if (! req.getParameter("nameDealer").equals(""))
+				setName (req.getParameter("nameDealer"));
+		if (req.getParameter("phoneDealer") != null)
+			if (! req.getParameter("phoneDealer").equals(""))
+				setPhone (req.getParameter("phoneDealer"));
+		if (req.getParameter("mailDealer") != null)
+			if (! req.getParameter("mailDealer").equals(""))
+				setMail (req.getParameter("mailDealer"));
+		if (req.getParameter("zipDealer") != null)
+			if (! req.getParameter("zipDealer").equals(""))
+				setZip (Integer.parseInt(req.getParameter("zipDealer")));
+		if (req.getParameter("countryDealer") != null)
+			if (! req.getParameter("countryDealer").equals(""))
+				setCountry (req.getParameter("countryDealer"));
+		if (req.getParameter("cityDealer") != null)
+			if (! req.getParameter("cityDealer").equals(""))
+				setCity (req.getParameter("cityDealer"));
+		if (req.getParameter("streetDealer") != null)
+			if (! req.getParameter("streetDealer").equals(""))
+				setStreet (req.getParameter("streetDealer"));
+		return this;
+	}
+
+	/**
+	 * <p> Public method that initializes the dealer fields with the values given in input. </p>
+	 * @param id : string that stores the id to be copied into the dealer entity bean.
+	 * @param kind : string that stores the kind to be copied into the dealer entity bean.
+	 * @param name : string that stores the name to be copied into the dealer entity bean.
+	 * @param phone : string that stores the phone to be copied into the dealer entity bean.
+	 * @param mail : string that stores the mail to be copied into the dealer entity bean.
+	 * @param zip : integer that stores the zip to be copied into the dealer entity bean.
+	 * @param country : string that stores the country to be copied into the dealer entity bean.
+	 * @param city : string that stores the city to be copied into the dealer entity bean.
+	 * @param street : string that stores the street to be copied into the dealer entity bean.
+	 * @return the updated dealer entity bean.
+	 */
+	public DealerTO getFromData(String id, String kind, String name, String phone, String mail, Integer zip, String country, String city, String street) {
+		return setId(id)
+				.setKind(kind)
+				.setName(name)
+				.setPhone(phone)
+				.setMail(mail)
+				.setZip(zip)
+				.setCountry(country)
+				.setCity(city)
+				.setStreet(street);
+	}
+
+	/**
+	 * <p> Public method that initializes the dealer transfer object fields with the values taken from the correspondent dealer entity bean. </p>
+	 * @param entity : entity bean that stores the values to be copied into the dealer transfer object.
+	 * @return the updated dealer transfer object.
+	 * @throws InvalidInputException Exception thrown when the fields of the transfer object are not valid. It is generated by the checker functions of this same class.
+	 */
+	public TO getFromEntity(Entity entity) throws InvalidInputException {
+		return getFromData(((Dealer) entity).getId(), 
+						   ((Dealer) entity).getKind(), 
+						   ((Dealer) entity).getName(), 
+						   ((Dealer) entity).getPhone(), 
+						   ((Dealer) entity).getMail(), 
+						   ((Dealer) entity).getAddress().getZip(), 
+						   ((Dealer) entity).getAddress().getCountry(), 
+						   ((Dealer) entity).getAddress().getCity(), 
+						   ((Dealer) entity).getAddress().getStreet() );
+	}
+
+	// getters & setters
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the id of the dealer. </p>
+	 * @return the id of the dealer.
+	 */
+	public String getId() { 
+		return id; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the id of the dealer. </p>
+	 * @param id : id of the dealer.
+	 * @return the dealer with the updated id.
+	 */
+	public DealerTO setId(String id) { 
+		this.id = id; 
+		return this;
+	}
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the kind of the dealer. </p>
+	 * @return the kind of the dealer.
+	 */
+	public String getKind() { 
+		return kind; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the kind of the dealer. </p>
+	 * @param kind : kind of the dealer.
+	 * @return the dealer with the updated kind.
+	 */
+	public DealerTO setKind(String kind) { 
+		this.kind = kind; 
+		return this;
+	}
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the name of the dealer. </p>
+	 * @return the name of the dealer.
+	 */
+	public String getName() { 
+		return name; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the name of the dealer. </p>
+	 * @param name : name of the dealer.
+	 * @return the dealer with the updated name.
+	 */
+	public DealerTO setName(String name) { 
+		this.name = name; 
+		return this;
+	}
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the phone of the dealer. </p>
+	 * @return the phone of the dealer.
+	 */
+	public String getPhone() { 
+		return phone; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the phone of the dealer. </p>
+	 * @param phone : phone of the dealer.
+	 * @return the dealer with the updated phone.
+	 */
+	public DealerTO setPhone(String phone) { 
+		this.phone = phone; 
+		return this;
+	}
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the mail of the dealer. </p>
+	 * @return the mail of the dealer.
+	 */
+	public String getMail() { 
+		return mail; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the mail of the dealer. </p>
+	 * @param mail : mail of the dealer.
+	 * @return the dealer with the updated mail.
+	 */
+	public DealerTO setMail(String mail) { 
+		this.mail = mail; 
+		return this;
+	}
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the zip of the dealer. </p>
+	 * @return the zip of the dealer.
+	 */
+	public Integer getZip() { 
+		return zip; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the zip of the dealer. </p>
+	 * @param zip : zip of the dealer.
+	 * @return the dealer with the updated zip.
+	 */
+	public DealerTO setZip(Integer zip) { 
+		this.zip = zip; 
+		return this;
+	}
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the country of the dealer. </p>
+	 * @return the country of the dealer.
+	 */
+	public String getCountry() { 
+		return country; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the country of the dealer. </p>
+	 * @param country : country of the dealer.
+	 * @return the dealer with the updated country.
+	 */
+	public DealerTO setCountry(String country) { 
+		this.country = country; 
+		return this;
+	}
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the city of the dealer. </p>
+	 * @return the city of the dealer.
+	 */
+	public String getCity() { 
+		return city; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the city of the dealer. </p>
+	 * @param city : city of the dealer.
+	 * @return the dealer with the updated city.
+	 */
+	public DealerTO setCity(String city) { 
+		this.city = city; 
+		return this;
+	}
+
+	/**
+	 * <p> Getter method for the instantiated transfer object to get the street of the dealer. </p>
+	 * @return the street of the dealer.
+	 */
+	public String getStreet() { 
+		return street; 
+	}
+	
+	/**
+	 * <p> Setter method for the instantiated transfer object to set the street of the dealer. </p>
+	 * @param street : street of the dealer.
+	 * @return the dealer with the updated street.
+	 */
+	public DealerTO setStreet(String street) { 
+		this.street = street; 
+		return this;
+	}
+
+	// checkers 
+
+	/**
+	 * <p> Public method that checks the id of the dealer for eventual errors. </p>
+	 * @return the checked dealer transfer object.
+	 * @throws InvalidInputException Exception thrown when the id of the dealer is not valid.
+	 */
+	public DealerTO checkId() throws InvalidInputException {
+		if (id.isEmpty()) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the kind of the dealer for eventual errors. </p>
+	 * @return the checked dealer transfer object.
+	 * @throws InvalidInputException Exception thrown when the kind of the dealer is not valid.
+	 */
+	public DealerTO checkKind() throws InvalidInputException {
+		if (kind.isEmpty()) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the name of the dealer for eventual errors. </p>
+	 * @return the checked dealer transfer object.
+	 * @throws InvalidInputException Exception thrown when the name of the dealer is not valid.
+	 */
+	public DealerTO checkName() throws InvalidInputException {
+		if (name.isEmpty()) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the phone of the dealer for eventual errors. </p>
+	 * @return the checked dealer transfer object.
+	 * @throws InvalidInputException Exception thrown when the phone of the dealer is not valid.
+	 */
+	public DealerTO checkPhone() throws InvalidInputException {
+		if (phone.isEmpty()) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the mail of the dealer for eventual errors. </p>
+	 * @return the checked dealer transfer object.
+	 * @throws InvalidInputException Exception thrown when the mail of the dealer is not valid.
+	 */
+	public DealerTO checkMail() throws InvalidInputException {
+		if (mail.isEmpty()) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the zip of the dealer for eventual errors. </p>
+	 * @return the checked dealer transfer object.
+	 * @throws InvalidInputException Exception thrown when the zip of the dealer is not valid.
+	 */
+	public DealerTO checkZip() throws InvalidInputException {
+		if (zip.equals(-1)) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the country of the dealer for eventual errors. </p>
+	 * @return the checked dealer transfer object.
+	 * @throws InvalidInputException Exception thrown when the country of the dealer is not valid.
+	 */
+	public DealerTO checkCountry() throws InvalidInputException {
+		if (country.isEmpty()) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the city of the dealer for eventual errors. </p>
+	 * @return the checked dealer transfer object.
+	 * @throws InvalidInputException Exception thrown when the city of the dealer is not valid.
+	 */
+	public DealerTO checkCity() throws InvalidInputException {
+		if (city.isEmpty()) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the street of the dealer for eventual errors. </p>
+	 * @return the checked dealer transfer object.
+	 * @throws InvalidInputException Exception thrown when the street of the dealer is not valid.
+	 */
+	public DealerTO checkStreet() throws InvalidInputException {
+		if (street.isEmpty()) throw new InvalidInputException(); 
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the values of the dealer primary keys for eventual errors. </p>
+	 * @return the checked dealer transfer object.
+	 * @throws InvalidInputException Exception thrown when the transfer object primary keys are not valid.
+	 */
+	public TO checkPrimaryKeys() throws InvalidInputException {
+		return this.checkId();
+	}
+
+	/**
+	 * <p> Public method that checks the values of the dealer foreign keys for eventual errors. </p>
+	 * @return the checked dealer transfer object.
+	 * @throws InvalidInputException Exception thrown when the transfer object foreign keys are not valid.
+	 */
+	public TO checkForeignKeys() throws InvalidInputException {
+		return this;
+	}
+
+	/**
+	 * <p> Public method that checks the values of the dealer primary and foreign keys for eventual errors. </p>
+	 * @return the checked dealer transfer object.
+	 * @throws InvalidInputException Exception thrown when the transfer object primary and foreign keys are not valid.
+	 */
+	public TO checkKeys() throws InvalidInputException {
+		return this.checkPrimaryKeys().checkForeignKeys();
+	}
+
+	// utilities
+
+	/**
+	 * <p> Public method that adapts the dealer transfer object to the search query. </p>
+	 * @param flag : necessary to choose if the search method has to consider strings or substrings.
+	 * @return the updated dealer transfer object.
+	 */
+	public TO searchAdjust () {
+		return this.setId(id.isEmpty()? id: "%".concat(id).concat("%"))
+			   	   .setKind(kind.isEmpty()? kind: "%".concat(kind).concat("%"))
+			   	   .setName(name.isEmpty()? name: "%".concat(name).concat("%"))
+			   	   .setPhone(phone.isEmpty()? phone: "%".concat(phone).concat("%"))
+			   	   .setMail(mail.isEmpty()? mail: "%".concat(mail).concat("%"))
+			   	   .setCountry(country.isEmpty()? country: "%".concat(country).concat("%"))
+			   	   .setCity(city.isEmpty()? city: "%".concat(city).concat("%"))
+			   	   .setStreet(street.isEmpty()? street: "%".concat(street).concat("%"));
+	}
+
+	@Override
+	public String toString() {
+		return "DealerTO [id=" + id + 
+						  ", kind=" + kind + 
+						  ", name=" + name + 
+						  ", phone=" + phone + 
+						  ", mail=" + mail + 
+						  ", zip=" + zip + 
+						  ", country=" + country + 
+						  ", city=" + city + 
+						  ", street=" + street + "]";
+	}
+
+}
