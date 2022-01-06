@@ -17,18 +17,18 @@ In order to test the scalability and speed of operations, fake data has been gen
 
 ## Requirements
 
-OracleDB 14
-Java 1.8
-   - Maven 4.0
-      - junit 3.8.1
-      - javax.servlet-api 4.0.1
-      - hibernate-core 5.2.8.Final
-      - ejb-api 3.0
-      - maven-compiler-plugin 3.8.1
+- OracleDB 14
+- Java 1.8
+   - maven 4.0
+   - junit 3.8.1 
+   - javax.servlet-api 4.0.1
+   - hibernate-core 5.2.8.Final
+   - ejb-api 3.0
+   - maven-compiler-plugin 3.8.1
    - jstl.jar 
    - ojdbc14.jar 
    - standard.jar 
-Apache Tomcat
+- Apache Tomcat
 
 ## Usage 
 
