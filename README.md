@@ -34,7 +34,7 @@ Apache Tomcat
 
 1. Create an empty database in Oracle Database and setup the database architecture by using the "UPdb.sql" file. 
 2. Update the username and password of your database into the "persistence.xml" file (servlet/src/main/resources/META-INF/)
-3. Compile the java project ("servlet/") and the java application will generate the class objects along with a .war file (servlet/target/). 
+3. Compile the java project ("servlet/") and the java application will generate the class objects along with a .war file (servlet/src/main/webapp/). 
 4. Run Apache Tomcat and visit the 'index.jsp' page using your web browser (e.g. "localhost:8080/index.jsp").
 
 ## Authors
